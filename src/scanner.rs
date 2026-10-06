@@ -104,6 +104,10 @@ impl<'a> Scanner<'a> {
                     self.add_simple_token(TokenType::Slash);
                 }
             }
+            ' ' | '\r' | '\t' => {}
+            '\n' => {
+                self.line += 1;
+            }
             ch => {
                 return Err(ScanError::UnexpectedCharacter {
                     line: self.line,
